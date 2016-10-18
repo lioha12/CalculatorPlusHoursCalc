@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyCalc</string>
+    <string name="clean">del</string>
+    <string name="root">√</string>
 </resources>

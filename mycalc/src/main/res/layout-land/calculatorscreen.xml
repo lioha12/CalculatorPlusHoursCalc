@@ -51,7 +51,17 @@
             android:textSize="@dimen/abc_action_bar_progress_bar_size"
             android:textColor="#ffffff"
             android:layout_margin="5dp"
-
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/dim_foreground_material_light"
+            android:textSize="@dimen/abc_action_bar_progress_bar_size"
+            android:textColor="#ffffff"
+            android:layout_margin="5dp"
+            android:text="@string/root"
+            android:id="@+id/btnRoot"
             />
 
     </LinearLayout>

@@ -8,21 +8,23 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="127dp"
+        android:layout_height="match_parent"
         android:id="@+id/textView"
         android:background="@color/background_floating_material_dark"
         android:clickable="false"
         android:textColor="#ffffff"
         android:gravity="right"
         android:textSize="30dp"
-        android:text="" />
+        android:text=""
+        android:layout_weight="3"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation= "horizontal">
+        android:layout_height="match_parent"
+        android:orientation= "horizontal"
+        android:layout_weight="4">
         <Button
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="C"
             android:id="@+id/btnclear"
@@ -34,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="del"
+            android:text="@string/clean"
             android:id="@+id/btnDel"
             android:textColor="#bd0c0c"
             android:textSize="@dimen/abc_action_bar_progress_bar_size"
@@ -53,16 +55,28 @@
             android:nestedScrollingEnabled="false"
             android:allowUndo="false"
             android:clickable="false" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/dim_foreground_material_light"
+            android:textSize="@dimen/abc_action_bar_progress_bar_size"
+            android:textColor="#ffffff"
+            android:layout_margin="5dp"
+            android:text="@string/root"
+            android:id="@+id/btnRoot"/>
 
     </LinearLayout>
+
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="2">
         <TableRow>
             <Button
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="match_parent"
                 android:text="1"
                 android:id="@+id/btn1"
                 android:background="@color/primary_dark_material_light"
@@ -104,7 +118,7 @@
             <Button
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="match_parent"
                 android:text="4"
                 android:id="@+id/btn4"
                 android:background="@color/primary_dark_material_light"
@@ -113,7 +127,7 @@
                 android:layout_margin="5dp" />
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="5"
                 android:id="@+id/btn5"
@@ -146,7 +160,7 @@
             <Button
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="match_parent"
                 android:text="7"
                 android:id="@+id/btn7"
                 android:background="@color/primary_dark_material_light"
@@ -197,7 +211,7 @@
                 android:layout_margin="5dp" />
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="0"
                 android:id="@+id/btn0"

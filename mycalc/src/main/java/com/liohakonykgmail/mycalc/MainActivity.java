@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnEqually;
     Button btnClear;
     Button btnDel;
+    Button btnSqw;
 
     String str = "";
 
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnMultiply = (Button)findViewById(R.id.btnMultiply);
         btnPlus = (Button)findViewById(R.id.btnPlus);
         btnTChK = (Button)findViewById(R.id.btnTChK);
-
+        btnSqw = (Button)findViewById(R.id.btnRoot);
 
         btn0.setOnClickListener(this);
         btn00.setOnClickListener(this);
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnClear.setOnClickListener(this);
         btnDel.setOnClickListener(this);
         btnTChK.setOnClickListener(this);
-
+        btnSqw.setOnClickListener(this);
         //textView.setText("");
 
     }
@@ -177,7 +178,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textView.setText(str);
                 break;
             case R.id.btnEqually:
-                if(str.endsWith(".")||str.endsWith("+")||str.endsWith("-")||str.endsWith("*")||str.endsWith("/"))
+                if(str.endsWith(".")||str.endsWith("+")||str.endsWith("-")||str.endsWith("*")||
+                        str.endsWith("/")||str.endsWith("√"))
                 {
                     textView.setText(str);
                     break;
@@ -194,7 +196,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     break;
                 }
             case R.id.btnDivision:
-                if(str.endsWith(".")||str.endsWith("+")||str.endsWith("-")||str.endsWith("*")||str.endsWith("/"))
+                if(str.endsWith(".")||str.endsWith("+")||str.endsWith("-")||str.endsWith("*")
+                        ||str.endsWith("/")||str.endsWith("√"))
                 {
                     textView.setText(str);
                     break;
@@ -237,6 +240,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     textView.setText("");
                 }
                 break;
+            case R.id.btnRoot:
+                if(str.endsWith("0")||str.endsWith("1")||str.endsWith("1")||str.endsWith("2")
+                        ||str.endsWith("3")||str.endsWith("4")||str.endsWith("5")||str.endsWith("6")
+                        ||str.endsWith("7")||str.endsWith("8")||str.endsWith("9")){
+                    str = str + "*√";
+                    textView.setText(str);
+                }else if(str.endsWith("√")){
+                    textView.setText(str);
+                    break;
+                }else {
+                    str += "√";
+                    textView.setText(str);
+                    break;
+                }
+
         }
     }
 }

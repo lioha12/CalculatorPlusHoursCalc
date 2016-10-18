@@ -15,7 +15,13 @@ public class Result {
     }
 
 
-    public String getResult() {
+     String getResult() {
+
+         if(input.contains("√"))
+         {
+             input = getSquereRoot(input);
+         }
+
         double doub = 0.0;
 
         ArrayList<Double> num = new ArrayList<>();
@@ -24,7 +30,7 @@ public class Result {
         char[] inputs = input.toCharArray();
 
         String input2 = "";
-        // Попытка исправить проблеммы с минусом удалась!!
+
         for(int i = 0; i < inputs.length; i++)
         {
             if(i == 0&&inputs[i] == '-')
@@ -87,7 +93,7 @@ public class Result {
                             double d2;
                             String s1 = numbIn[in];
                             String s2 = numbIn[in + 1];
-                            if (s1.startsWith("-"))       //check negativ variables
+                            if (s1.startsWith("-"))       //check negative variables
                             {
                                 d1 = Double.parseDouble(s1.substring(1)) * (-1.0);
                             } else d1 = Double.parseDouble(s1);
@@ -170,6 +176,44 @@ public class Result {
             result = "Wrong input";
         }
         return result;
+    }
+    String getSquereRoot(String s)
+    {
+        ArrayList<Integer> positionRoot = new ArrayList<>();
+        ArrayList<Integer> posLastArgForRoot = new ArrayList<>();
+
+        char[]strings = s.toCharArray();
+
+        for(int i = 0; i < strings.length; i++)
+        {
+            if (strings[i] == '√')
+            {
+                positionRoot.add(i);
+                for(int j = i; j < strings.length; j++)
+                {
+                    if(j == s.length()-1){
+                        posLastArgForRoot.add(j);
+                    } else
+                    if(strings[j] == '+'||strings[j] == '-'||strings[j] == '/' || strings[j] == '*')
+                    {
+                        posLastArgForRoot.add(j);
+                    }
+                }
+            }
+        }
+
+        for(int i = 0; i < positionRoot.size(); i++){
+        String str = s.substring(positionRoot.get(i)+1, posLastArgForRoot.get(i)+1);
+            if(str.endsWith("+")||str.endsWith("-")||str.endsWith("/")||str.endsWith("*")
+                    ||str.endsWith("√"))
+            {
+                str = str.substring(0, str.length()-1);
+            }
+            double doub = Math.sqrt(Double.parseDouble(str));
+            s = s.replace("√" + str, String.valueOf(doub));
+        }
+
+        return s;
     }
 }
 
