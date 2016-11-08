@@ -1,67 +1,79 @@
 package com.liohakonykgmail.mycalc;
 
-/**
- * Created by lioha on 17.08.16.
- */
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class HourseMain extends AppCompatActivity implements View.OnClickListener{
+import static android.content.Context.MODE_PRIVATE;
 
-    TextView textView2;
-    Button btnCH;
-    Button btnDELH;
-    Button btn1H;
-    Button btn2H;
-    Button btn3H;
-    Button btn4H;
-    Button btn5H;
-    Button btn6H;
-    Button btn7H;
-    Button btn8H;
-    Button btn9H;
-    Button btn0H;
-    Button btnPlH;
-    Button btnMinusH;
-    Button btnEqH;
-    Button btnTchH;
+/**
+ * Created by lioha on 08.11.16.
+ */
 
-    String str = "";
+public class HoursCalcFragment extends Fragment implements View.OnClickListener{
+    private TextView textView2;
+    private Button btnCH;
+    private Button btnDELH;
+    private Button btn1H;
+    private Button btn2H;
+    private Button btn3H;
+    private Button btn4H;
+    private Button btn5H;
+    private Button btn6H;
+    private Button btn7H;
+    private Button btn8H;
+    private Button btn9H;
+    private Button btn0H;
+    private Button btnPlH;
+    private Button btnMinusH;
+    private Button btnEqH;
+    private Button btnTchH;
 
-    SharedPreferences sPr;
-    final String LIST_SIZE = "listSize";
+    private String str = "";
 
-    ArrayList<String> resultList = new ArrayList<>();
+    private SharedPreferences sPr;
+    private final String LIST_SIZE = "listSize";
 
-    protected void onCreate(Bundle savedInstanceState) {
+    private ArrayList<String> resultList = new ArrayList<>();
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hourscalc);
-        btn0H = (Button)findViewById(R.id.btn0H);
-        btn1H = (Button)findViewById(R.id.btn1H);
-        btn2H = (Button)findViewById(R.id.btn2H);
-        btn3H = (Button)findViewById(R.id.btn3H);
-        btn4H = (Button)findViewById(R.id.btn4H);
-        btn5H = (Button)findViewById(R.id.btn5H);
-        btn6H = (Button)findViewById(R.id.btn6H);
-        btn7H = (Button)findViewById(R.id.btn7H);
-        btn8H = (Button)findViewById(R.id.btn8H);
-        btn9H = (Button)findViewById(R.id.btn9H);
-        btnCH = (Button)findViewById(R.id.btnCH);
-        btnDELH = (Button)findViewById(R.id.btnDELH);
-        btnEqH = (Button)findViewById(R.id.btnEqH);
-        btnMinusH = (Button)findViewById(R.id.btnMinusH);
-        btnPlH = (Button)findViewById(R.id.btnPlH);
-        btnTchH = (Button)findViewById(R.id.btnTchH);
-        textView2 = (TextView)findViewById(R.id.tvH);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.hourscalc, container, false);
+
+        btn0H = (Button)v.findViewById(R.id.btn0H);
+        btn1H = (Button)v.findViewById(R.id.btn1H);
+        btn2H = (Button)v.findViewById(R.id.btn2H);
+        btn3H = (Button)v.findViewById(R.id.btn3H);
+        btn4H = (Button)v.findViewById(R.id.btn4H);
+        btn5H = (Button)v.findViewById(R.id.btn5H);
+        btn6H = (Button)v.findViewById(R.id.btn6H);
+        btn7H = (Button)v.findViewById(R.id.btn7H);
+        btn8H = (Button)v.findViewById(R.id.btn8H);
+        btn9H = (Button)v.findViewById(R.id.btn9H);
+        btnCH = (Button)v.findViewById(R.id.btnCH);
+        btnDELH = (Button)v.findViewById(R.id.btnDELH);
+        btnEqH = (Button)v.findViewById(R.id.btnEqH);
+        btnMinusH = (Button)v.findViewById(R.id.btnMinusH);
+        btnPlH = (Button)v.findViewById(R.id.btnPlH);
+        btnTchH = (Button)v.findViewById(R.id.btnTchH);
+        textView2 = (TextView)v.findViewById(R.id.tvH);
 
         btn0H.setOnClickListener(this);
         btn1H.setOnClickListener(this);
@@ -83,9 +95,11 @@ public class HourseMain extends AppCompatActivity implements View.OnClickListene
         load();
 
         registerForContextMenu(textView2);
+
+        return v;
     }
 
-    protected void onDestroy()
+    public void onDestroy()
     {
         super.onDestroy();
         save();
@@ -223,7 +237,7 @@ public class HourseMain extends AppCompatActivity implements View.OnClickListene
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(this, "Неверный ввод!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Неверный ввод!", Toast.LENGTH_LONG).show();
                     break;
                 }
 
@@ -260,9 +274,9 @@ public class HourseMain extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    void save()
+    private void save()
     {
-        sPr = getPreferences(MODE_PRIVATE);
+        sPr = this.getActivity().getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sPr.edit();
         editor.putInt(LIST_SIZE, resultList.size());
         editor.commit();
@@ -273,9 +287,9 @@ public class HourseMain extends AppCompatActivity implements View.OnClickListene
             editor.commit();
         }
     }
-    void load()
+    private void load()
     {
-        sPr = getPreferences(MODE_PRIVATE);
+        sPr = this.getActivity().getPreferences(MODE_PRIVATE);
         int si = sPr.getInt(LIST_SIZE, 0);
 
         for(int i = 0; i < si; i++)
