@@ -3,4 +3,8 @@
     <string name="clean">del</string>
     <string name="root">√</string>
     <string name="wrong_input">Неверный ввод</string>
+    <string name="hint">For navigate between calculators, use swipe right or swipe left. Use long tap for
+    show your calculations history</string>
+    <string name="dont_show">Dont show this massage again</string>
+    <string name="hint_title">Hint</string>
 </resources>

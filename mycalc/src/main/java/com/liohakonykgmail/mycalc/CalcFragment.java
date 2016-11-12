@@ -1,7 +1,12 @@
 package com.liohakonykgmail.mycalc;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +14,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.liohakonykgmail.mycalc.HintDialog.IS_CHECKED_HINT;
+
 /**
  * Created by lioha on 08.11.16.
  */
 
 public class CalcFragment extends Fragment implements View.OnClickListener {
+
+    private final String SHOW_DIALOG = "dialog";
+
+    private SharedPreferences sPr;
 
     private TextView textView;
     private Button btn1;
@@ -38,9 +50,20 @@ public class CalcFragment extends Fragment implements View.OnClickListener {
     private Button btnSqw;
 
     private String str = "";
+
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        new HintShower().execute();
+        /*Log.d("mylog", "onAttach");
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+
+        HintDialog dialog = HintDialog.newInstance();
+        if(dialog == null)
+        {
+            return;
+        }else{
+            dialog.show(fm, SHOW_DIALOG);}*/
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
@@ -227,4 +250,31 @@ public class CalcFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    private class HintShower extends AsyncTask<Void, Void, Boolean>{
+
+        HintDialog dialog;
+        boolean isShow;
+        FragmentManager fm;
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            isShow = loadBoolean();
+            return isShow;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if(aBoolean)
+            {
+                dialog = new HintDialog();
+                fm = getActivity().getSupportFragmentManager();
+                dialog.show(fm, SHOW_DIALOG);
+            }else return;
+        }
+    }
+    public boolean loadBoolean()
+    {
+        sPr = this.getActivity().getPreferences(MODE_PRIVATE);
+        return  sPr.getBoolean(IS_CHECKED_HINT, true);
+    }
 }
