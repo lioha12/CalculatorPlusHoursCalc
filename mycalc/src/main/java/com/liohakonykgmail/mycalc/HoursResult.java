@@ -12,8 +12,8 @@ import static com.liohakonykgmail.mycalc.HoursAndMinutes.plus;
 
 public class HoursResult {
 
-    transient String result;
-    transient HoursAndMinutes res;
+    private String result;
+    private HoursAndMinutes res;
 
     public HoursResult(){
     }
@@ -87,18 +87,9 @@ public class HoursResult {
             }
         }
         result = String.valueOf(res.hours) + ":" + String.valueOf(res.min);
-        //resultList.add(result);
+
 
         return result;
     }
 
-    /*@Override
-    public void readExternal(ObjectInput input) throws IOException, ClassNotFoundException {
-        resultList = (ArrayList<String>) input.readObject();
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput output) throws IOException {
-        output.writeObject(resultList);
-    }*/
 }

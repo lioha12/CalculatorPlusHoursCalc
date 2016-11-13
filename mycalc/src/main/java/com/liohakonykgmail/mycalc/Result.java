@@ -72,7 +72,6 @@ public class Result {
             }
         }
 
-        //String[] insginia = input.split("[0-9.*/]");
         try {
 
             for (int i = 0; i < numbers.length; i++) {

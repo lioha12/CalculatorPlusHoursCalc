@@ -25,7 +25,6 @@ public class HintDialog extends DialogFragment {
     private CheckBox checkBox;
     private SharedPreferences sPr;
     public static final String IS_CHECKED_HINT = "is_dialog_hint_checked";
-    private final String MY_PREF = "mypref";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
@@ -39,7 +38,6 @@ public class HintDialog extends DialogFragment {
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //HintDialog.this.onDestroy();
                 save();
             }
         });

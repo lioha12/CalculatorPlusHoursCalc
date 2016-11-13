@@ -291,7 +291,6 @@ public class HoursCalcFragment extends Fragment implements View.OnClickListener{
     private void load()
     {
         sPr = this.getActivity().getPreferences(MODE_PRIVATE);
-       // Log.d("mylog", "--- HORS ---" + sPr.toString());
         int si = sPr.getInt(LIST_SIZE, 0);
 
         for(int i = 0; i < si; i++)
@@ -299,7 +298,7 @@ public class HoursCalcFragment extends Fragment implements View.OnClickListener{
             String s = sPr.getString(String.valueOf(i), "");
             resultList.add(i, s);
         }
-        //SharedPreferences.Editor ed = sPr.edit();
+
         sPr.edit().clear();
     }
 

@@ -55,15 +55,6 @@ public class CalcFragment extends Fragment implements View.OnClickListener {
     {
         super.onCreate(savedInstanceState);
         new HintShower().execute();
-        /*Log.d("mylog", "onAttach");
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-
-        HintDialog dialog = HintDialog.newInstance();
-        if(dialog == null)
-        {
-            return;
-        }else{
-            dialog.show(fm, SHOW_DIALOG);}*/
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
@@ -201,11 +192,6 @@ public class CalcFragment extends Fragment implements View.OnClickListener {
                 textView.setText(str);
                 break;
             case R.id.btnMinus:
-                /*if(str.endsWith(".")||str.endsWith("+")||str.endsWith("-")||str.endsWith("*")||str.endsWith("/"))
-                {
-                    textView.setText(str);
-                    break;
-                }*/
                 str += "-";
                 textView.setText(str);
                 break;
